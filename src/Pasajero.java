@@ -1,8 +1,9 @@
-public class Pasajero {
+public class Pasajero { // Crea un pasajero con nombre, apellido y pasaporte.
     private String nombre;
     private String apellido;
     private int pasaporte;
 
+    // Clase que representa a un pasajero del sistema.
     public Pasajero(String nombre, String apellido, int pasaporte) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -33,3 +34,4 @@ public class Pasajero {
         this.pasaporte = pasaporte;
     }
 }
+//get Devuelve . Set Modifica

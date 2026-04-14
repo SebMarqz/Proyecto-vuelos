@@ -2,7 +2,7 @@ import java.util.Scanner;
 
       public class Menu_aerolinea {
 
-        //MENU PRINCIPAL
+        //MENU PRINCIPAL: Muestra el menu principal del sistema y dirige al submenu correspondiente.
         public void iniciar(Aerolinea aerolinea){
             Scanner scanner = new Scanner(System.in);
             int opcion;
@@ -35,7 +35,7 @@ import java.util.Scanner;
             } while(opcion != 4);
         }
 
-        //SUB MENU PASAJERO
+        //SUB MENU PASAJERO:  Muestra y gestiona las operaciones relacionadas con pasajeros.
         private void menuPasajeros(Aerolinea aerolinea, Scanner scanner){
             int opcion;
 
@@ -82,7 +82,7 @@ import java.util.Scanner;
             } while(opcion != 4);
         }
 
-        //SUB MENU VUELO
+        //SUB MENU VUELO: Muestra y gestiona las operaciones relacionadas con vuelos.
 
         private void menuVuelos(Aerolinea aerolinea, Scanner scanner){
             int opcion;
@@ -175,7 +175,7 @@ import java.util.Scanner;
             } while(opcion != 5);
         }
 
-
+        // Muestra y gestiona las operaciones relacionadas con reservas y cola de espera.
         private void menuReservas(Aerolinea aerolinea, Scanner scanner){
             int opcion;
 
