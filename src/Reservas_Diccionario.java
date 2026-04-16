@@ -51,5 +51,7 @@ public class Reservas_Diccionario implements Reserva_interfaz  {
         return reservas[pos];
     }
 
-
+    public boolean reservas_vacias(){
+        return indice == 0;
+    }
 }

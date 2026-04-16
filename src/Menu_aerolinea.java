@@ -108,11 +108,25 @@ import java.util.Scanner;
                         System.out.print("Destino: ");
                         String destino = scanner.nextLine();
 
-                        System.out.print("Fecha: ");
-                        String fecha = scanner.nextLine();
+                        String fecha;
+                        do {
+                            System.out.print("Fecha (dd/MM/yyyy): ");
+                            fecha = scanner.nextLine();
 
-                        System.out.print("Hora: ");
-                        String hora = scanner.nextLine();
+                            if (!fechaValida(fecha)) {
+                                System.out.println("Fecha invalida. Use el formato dd/MM/yyyy");
+                            }
+                        } while (!fechaValida(fecha));
+
+                        String hora;
+                        do {
+                            System.out.print("Hora (HH:mm): ");
+                            hora = scanner.nextLine();
+
+                            if (!horaValida(hora)) {
+                                System.out.println("Hora invalida. Use el formato HH:mm");
+                            }
+                        } while (!horaValida(hora));
 
                         aerolinea.agregarVuelo(cantidadAsientos, origen, destino, fecha, hora);
                         break;
@@ -292,5 +306,78 @@ import java.util.Scanner;
             } while(opcion != 5);
         }
 
+          private boolean esNumero(char c){
+              return c >= '0' && c <= '9';
+          }
 
+          private boolean esBisiesto(int anio){
+              return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+          }
+
+          private boolean fechaValida(String fecha){
+              if(fecha == null || fecha.length() != 10){
+                  return false;
+              }
+
+              if(fecha.charAt(2) != '/' || fecha.charAt(5) != '/'){
+                  return false;
+              }
+
+              int i = 0;
+              while(i < fecha.length()){
+                  if(i != 2 && i != 5 && !esNumero(fecha.charAt(i))){
+                      return false;
+                  }
+                  i++;
+              }
+
+              int dia = Integer.parseInt(fecha.substring(0, 2));
+              int mes = Integer.parseInt(fecha.substring(3, 5));
+              int anio = Integer.parseInt(fecha.substring(6, 10));
+
+              if(mes < 1 || mes > 12){
+                  return false;
+              }
+
+              if(dia < 1){
+                  return false;
+              }
+
+              if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+                  return dia <= 30;
+              }
+
+              if(mes == 2){
+                  if(esBisiesto(anio)){
+                      return dia <= 29;
+                  }
+                  return dia <= 28;
+              }
+
+              return dia <= 31;
+          }
+
+          private boolean horaValida(String hora){
+              if(hora == null || hora.length() != 5){
+                  return false;
+              }
+
+              if(hora.charAt(2) != ':'){
+                  return false;
+              }
+
+              if(!esNumero(hora.charAt(0)) || !esNumero(hora.charAt(1)) ||
+                      !esNumero(hora.charAt(3)) || !esNumero(hora.charAt(4))){
+                  return false;
+              }
+
+              int horas = Integer.parseInt(hora.substring(0, 2));
+              int minutos = Integer.parseInt(hora.substring(3, 5));
+
+              if(horas < 0 || horas > 23){
+                  return false;
+              }
+
+              return minutos >= 0 && minutos <= 59;
+          }
 }
