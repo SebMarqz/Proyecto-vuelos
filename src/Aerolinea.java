@@ -80,9 +80,58 @@ public class Aerolinea {
         System.out.println("Vuelo eliminado");
     }
 
-    // Devuelve el ultimo vuelo agregado al conjunto.
+    // Devuelve el vuelo mas reciente segun fecha y hora.
     public Vuelo consultarUltimoVuelo(){
-        return vuelos.elegir_vuelo();
+        if (vuelos.vuelo_vacio()) {
+            return null;
+        }
+
+        Vuelo ultimo = vuelos.conjunto_vuelos[0];
+        int i = 1;
+
+        while (i < vuelos.indice) {
+            if (esPosterior(vuelos.conjunto_vuelos[i], ultimo)) {
+                ultimo = vuelos.conjunto_vuelos[i];
+            }
+            i++;
+        }
+
+        return ultimo;
+    }
+
+    private boolean esPosterior(Vuelo vuelo1, Vuelo vuelo2){
+        int anio1 = Integer.parseInt(vuelo1.getFecha().substring(6, 10));
+        int anio2 = Integer.parseInt(vuelo2.getFecha().substring(6, 10));
+
+        if(anio1 != anio2){
+            return anio1 > anio2;
+        }
+
+        int mes1 = Integer.parseInt(vuelo1.getFecha().substring(3, 5));
+        int mes2 = Integer.parseInt(vuelo2.getFecha().substring(3, 5));
+
+        if(mes1 != mes2){
+            return mes1 > mes2;
+        }
+
+        int dia1 = Integer.parseInt(vuelo1.getFecha().substring(0, 2));
+        int dia2 = Integer.parseInt(vuelo2.getFecha().substring(0, 2));
+
+        if(dia1 != dia2){
+            return dia1 > dia2;
+        }
+
+        int hora1 = Integer.parseInt(vuelo1.getHora().substring(0, 2));
+        int hora2 = Integer.parseInt(vuelo2.getHora().substring(0, 2));
+
+        if(hora1 != hora2){
+            return hora1 > hora2;
+        }
+
+        int minuto1 = Integer.parseInt(vuelo1.getHora().substring(3, 5));
+        int minuto2 = Integer.parseInt(vuelo2.getHora().substring(3, 5));
+
+        return minuto1 > minuto2;
     }
 
     // Busca un vuelo por su ID.

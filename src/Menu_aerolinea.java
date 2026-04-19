@@ -92,8 +92,7 @@ import java.util.Scanner;
                 System.out.println("1. Agregar vuelo");
                 System.out.println("2. Buscar vuelo");
                 System.out.println("3. Eliminar vuelo");
-                System.out.println("4. Consultar ultimo vuelo");
-                System.out.println("5. Volver");
+                System.out.println("4. Consultar ultimo vuelo por fecha");                System.out.println("5. Volver");
                 opcion = scanner.nextInt();
 
                 switch(opcion){
@@ -167,8 +166,7 @@ import java.util.Scanner;
                         Vuelo ultimoVuelo = aerolinea.consultarUltimoVuelo();
 
                         if(ultimoVuelo != null){
-                            System.out.println("Ultimo vuelo cargado:");
-                            System.out.println("Origen: " + ultimoVuelo.getOrigen());
+                            System.out.println("Ultimo vuelo por fecha:");                            System.out.println("Origen: " + ultimoVuelo.getOrigen());
                             System.out.println("Destino: " + ultimoVuelo.getDestino());
                             System.out.println("Fecha: " + ultimoVuelo.getFecha());
                             System.out.println("Hora: " + ultimoVuelo.getHora());
